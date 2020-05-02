@@ -206,7 +206,6 @@ class ScanOptions:
                 'Scan only files which have changed since a specified commit reference.',
                 'Leave empty to read commit reference from baseline',
             ),
-            dest='from_commit',
         )
 
         return self

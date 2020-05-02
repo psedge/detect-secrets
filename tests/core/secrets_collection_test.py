@@ -294,7 +294,7 @@ class TestBaselineInputOutput:
     def test_output(self, mock_gmtime):
         assert (
             self.logic.format_for_baseline_output()
-            == self.get_point_thirteen_point_two_and_later_baseline_dict(mock_gmtime)
+            == self.get_point_fourteen_point_zero_and_later_baseline_dict(mock_gmtime)
         )
 
     def test_load_baseline_from_string_with_pre_point_twelve_string(self, mock_gmtime):
@@ -365,7 +365,7 @@ class TestBaselineInputOutput:
         assert secrets['exclude']['lines'] is None
         assert original['results'] == secrets['results']
 
-    def test_load_baseline_from_string_with_point_thirteen_point_two_and_later_string(
+    def test_load_baseline_from_string_with_point_fourteen_point_zero_and_later_string(
         self,
         mock_gmtime,
     ):
@@ -373,7 +373,7 @@ class TestBaselineInputOutput:
         We use load_baseline_from_string as a proxy to testing load_baseline_from_dict,
         because it's the most entry into the private function.
         """
-        original = self.get_point_thirteen_point_two_and_later_baseline_dict(mock_gmtime)
+        original = self.get_point_fourteen_point_zero_and_later_baseline_dict(mock_gmtime)
 
         word_list = """
             roller\n
@@ -386,7 +386,7 @@ class TestBaselineInputOutput:
                 json.dumps(original),
             ).format_for_baseline_output()
 
-        # v0.13.2+ assertions
+        # v0.14.0+ assertions
         assert original['commit'] == secrets['commit']
 
         # Regular assertions
@@ -413,8 +413,8 @@ class TestBaselineInputOutput:
             )
         assert mock_log.error_messages == 'Incorrectly formatted baseline!\n'
 
-    def get_point_thirteen_point_two_and_later_baseline_dict(self, gmtime):
-        # In v0.13.2 --from-commit got added
+    def get_point_fourteen_point_zero_and_later_baseline_dict(self, gmtime):
+        # In v0.14.0 --from-commit got added
         baseline = self.get_point_twelve_point_seven_and_later_baseline_dict(gmtime)
         baseline['commit'] = 'd6a9a18cf6f16ad1bb1751a507b7824266c20924'
         return baseline
